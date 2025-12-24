@@ -1,23 +1,24 @@
-### Prometheus exporter for hostapd
-	
-- Uses hostapd_cli to get statistics from the Access Points (APs)/ Virtual Access Points (VAPs) and the connected clients. 
+# Prometheus hostapd Exporter
 
-- Tested with hostapd v2.7
+A hardened telemetry collector for WiFi Access Points.
 
-- Expects the following name format for the ctrl_interface used in order to connect to hostapd: hostapd_$ID
-    - Where each ID is unique and each hostapd instance only manages one AP/VAP
-	- Detects the APs/VAPs automatically if a new ctrl iface is addded
+## Features
+- **Zero Config**: Automatically detects hostapd interfaces.
+- **BOfH Approved**: Strict systemd sandboxing (Read-only VFS, private /tmp).
+- **Lightweight**: Minimal Python dependencies, no heavy parsers.
 
-- Uses the following labels:
- 	- id=$ID (added to the statistics of the VAP/AP with this ID and the clients)
- 	- mac_sta=$MAC_STA (added to the statistics of the clients)
+## Installation (Debian)
+```bash
+apt install ./prometheus-hostapd-exporter_2.0-1_all.deb
+```
 
-- Expects a config.json file for configuration (an example is provided with the code):
-    - DEFAULT: port (default 9551) and directory containing the hostapd ctrl ifaces (default '/var/run')
+## Configuration
 
-    - METRICS_AP: metrics related to the status of the AP/VAP. For each metric, it expects a name_hostapd (must be one of the obtained metrics when using the 'status' command in hostapd_cli), a name_prometheus (the one that will be exported to prometheus), a type (gauge or counter) and a help/information string
+Edit `/etc/default/prometheus-hostapd-exporter`.
 
-    - METRICS_STA: metrics related to the stations connected to the AP/VAP. For each metric, it expects a name_hostapd (must be one of the obtained metrics when using the 'all_sta' command in hostapd_cli), a name_prometheus (the one that will be exported to prometheus), a type (gauge or counter) and a help/information string
+Default port: `9551`.
 
-- Author: Miguel Catalan-Cid <miguel.catalan@i2cat.net>
-- Copyright 2019 Fundació Privada I2CAT, Internet i Innovació digital a Catalunya. See LICENSE for more details.
+## Security
+
+Runs as `prometheus:prometheus` with supplementary group `netdev`.
+Uses `ProtectSystem=strict` to prevent filesystem mutation.

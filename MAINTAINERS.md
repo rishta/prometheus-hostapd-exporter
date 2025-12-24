@@ -1,1 +1,2 @@
-- Miguel Catalan-Cid miguel.catalan@i2cat.net
+- Miguel Catalan-Cid <miguel.catalan@i2cat.net> (Original Author)
+- BOfH <bofh@solarpunk.green> (Current Maintainer / Refactor)

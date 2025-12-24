@@ -1,0 +1,8 @@
+.pybuild/
+debian/*.debhelper
+debian/*.substvars
+debian/debhelper-build-stamp
+debian/files
+debian/*/
+dist/
+**/*.deb
