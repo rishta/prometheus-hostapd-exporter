@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "prometheus-hostapd-exporter"
+version = "0.1.0"
+description = "Prometheus exporter for hostapd WiFi metrics"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "prometheus-client>=0.17.0",
+    "setproctitle>=1.3.0",
+]
+authors = [
+    { name = "BOfH", email = "bofh@solarpunk.green" },
+]
+
+[project.scripts]
+prometheus-hostapd-exporter = "prometheus_hostapd_exporter.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/prometheus_hostapd_exporter"]
