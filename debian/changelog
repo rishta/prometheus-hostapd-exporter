@@ -1,0 +1,7 @@
+prometheus-hostapd-exporter (2.0.0) bookworm; urgency=medium
+
+  * Major refactor and Debianization.
+  * Move to src-layout and pyproject.toml.
+  * Implement strict systemd hardening.
+
+ -- BOfH <bofh@solarpunk.green>  Wed, 24 Dec 2025 05:30:00 +0000

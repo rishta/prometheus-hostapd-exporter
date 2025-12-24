@@ -1,0 +1,7 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: prometheus-hostapd-exporter
+
+Files: *
+Copyright: 2019 Miguel Catalan-Cid <miguel.catalan@i2cat.net>
+           2025 BOfH <bofh@solarpunk.green>
+License: GPL-3.0

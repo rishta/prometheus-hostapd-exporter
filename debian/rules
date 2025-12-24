@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+export PYBUILD_NAME=prometheus-hostapd-exporter
+export PYBUILD_SYSTEM=pyproject
+
+# Use the python3 dh sequencer
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+# BOfH optimization: don't run tests during build if none exist
+override_dh_auto_test:

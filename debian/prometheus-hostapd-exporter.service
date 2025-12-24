@@ -1,0 +1,33 @@
+[Unit]
+Description=Hostapd Prometheus Exporter
+After=network.target hostapd.service
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+SupplementaryGroups=netdev
+
+# Load configuration from Debian default file
+# The '-' means it won't fail if the file is missing
+EnvironmentFile=-/etc/default/prometheus-hostapd-exporter
+Environment=PYTHONUNBUFFERED=1
+
+RuntimeDirectory=prometheus-hostapd-exporter
+WorkingDirectory=/run/prometheus-hostapd-exporter
+ExecStart=/usr/bin/prometheus-hostapd-exporter
+
+# Strict Sandbox
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+NoNewPrivileges=true
+# Grant read access to the config file within the strict sandbox
+ReadOnlyPaths=/etc/default/prometheus-hostapd-exporter
+ReadWritePaths=/run/prometheus-hostapd-exporter /run/hostapd
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

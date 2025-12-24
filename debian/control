@@ -1,0 +1,24 @@
+Source: prometheus-hostapd-exporter
+Section: net
+Priority: optional
+Maintainer: BOfH <bofh@example.com>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               pybuild-plugin-pyproject,
+               python3-all,
+               python3-setuptools,
+               python3-wheel,
+               python3-setproctitle,
+               python3-prometheus-client
+Standards-Version: 4.6.2
+
+Package: prometheus-hostapd-exporter
+Architecture: all
+Depends: ${python3:Depends}, 
+         ${misc:Depends}, 
+         hostapd, 
+         procps,
+         adduser
+Description: Prometheus exporter for hostapd WiFi metrics
+ A hardened telemetry service for monitoring station churn and 
+ AP saturation on edge nodes like OrangePi.

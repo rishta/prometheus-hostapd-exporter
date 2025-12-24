@@ -1,0 +1,16 @@
+# Configuration for hostapd-exporter
+
+# Port to listen on
+EXPORTER_PORT=9551
+
+# Address to bind to (0.0.0.0 for remote scraping, 127.0.0.1 for local)
+EXPORTER_ADDR=0.0.0.0
+
+# Path to hostapd control socket directory
+HOSTAPD_CTRL_DIR=/run/hostapd
+
+# Wifi interface to monitor (leave empty for auto-discovery)
+# INTERFACE=wlan0
+
+# How often to poll hostapd (seconds)
+SCRAPE_INTERVAL=5
